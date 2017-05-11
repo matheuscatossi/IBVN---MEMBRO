@@ -35,20 +35,7 @@ public class InfoEventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_evento);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        Drawable drawableAux = getResources().getDrawable(R.drawable.back);
-        Bitmap bitmap = ((BitmapDrawable) drawableAux).getBitmap();
-        Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 40, 40, true));
-        toolbar.setNavigationIcon(drawable);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent myIntent = getIntent();
         String id = myIntent.getStringExtra("cod");
@@ -112,10 +99,15 @@ public class InfoEventoActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }
